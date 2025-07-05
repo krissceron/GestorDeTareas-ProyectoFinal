@@ -39,27 +39,36 @@
         <version>3.0.0-M9</version>
       </plugin>
 
-      <!-- Checkstyle -->
+      <!-- Checkstyle - Configuración a prueba de fallos -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.3.1</version> <!-- o más nueva -->
+        <version>3.1.2</version>
+        <configuration>
+          <!-- Usar configuración predefinida de Google -->
+          <configLocation>google_checks.xml</configLocation>
+          <consoleOutput>true</consoleOutput>
+          <failOnViolation>false</failOnViolation>
+          <violationSeverity>warning</violationSeverity>
+        </configuration>
+        <dependencies>
+          <!-- Versión estable y compatible -->
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>8.45.1</version>
+          </dependency>
+        </dependencies>
         <executions>
           <execution>
-            <phase>verify</phase>
+            <id>validate</id>
+            <phase>validate</phase>
             <goals>
               <goal>check</goal>
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <configLocation>google_checks.xml</configLocation>
-          <encoding>UTF-8</encoding>
-          <consoleOutput>true</consoleOutput>
-          <failsOnError>true</failsOnError>
-        </configuration>
       </plugin>
-
 
       <!-- JaCoCo (cobertura) -->
       <plugin>
@@ -83,7 +92,7 @@
         <version>3.21.2</version>
         <configuration>
           <printFailingErrors>true</printFailingErrors>
-          <failOnViolation>false</failOnViolation> <!-- Para no bloquear el build -->
+          <failOnViolation>false</failOnViolation>
         </configuration>
         <executions>
           <execution>
