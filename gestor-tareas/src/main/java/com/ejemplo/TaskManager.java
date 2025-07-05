@@ -20,10 +20,4 @@ public class TaskManager {
         System.out.println("Task removed.");
     }
 
-    public static void main(String[] args) {
-        TaskManager tm = new TaskManager();
-        tm.addTask("Complete project");
-        tm.listTasks();
-        tm.removeTask(1);
-    }
 }
