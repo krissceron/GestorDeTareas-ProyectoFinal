@@ -1,4 +1,5 @@
-Main.class
-ConsoleApp.class
-Task.class
-TaskService.class
+com\ejemplo\ConsoleApp.class
+com\ejemplo\TaskService.class
+com\ejemplo\Task.class
+com\ejemplo\Main.class
+com\ejemplo\ReportesMain.class

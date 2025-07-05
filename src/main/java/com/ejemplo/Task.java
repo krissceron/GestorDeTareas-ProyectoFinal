@@ -1,3 +1,5 @@
+package com.ejemplo;
+
 import java.util.Objects;
 
 public class Task {
