@@ -27,7 +27,7 @@ jobs:
 
     - name: Run Checkstyle (style checker)
 
-      run: mvn checkstyle:check
+      run: mvn checkstyle:checkstyle
 
     - name: Run PMD (code quality checker)
 
