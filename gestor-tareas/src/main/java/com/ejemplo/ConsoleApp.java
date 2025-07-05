@@ -6,11 +6,7 @@ public class ConsoleApp {
     private final TaskService taskService = new TaskService();
     private final Scanner scanner = new Scanner(System.in);
     
-    public static void main(String[] args) {
-        ConsoleApp app = new ConsoleApp();
-        app.run();
-    }
-    
+ 
     public void run() {
         System.out.println("=== TASK MANAGER ===");
         System.out.println("¡Bienvenido al gestor de tareas!");
