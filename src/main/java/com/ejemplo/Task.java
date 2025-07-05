@@ -61,12 +61,12 @@ public final class Task {
   }
 
   @Override
-  public final int hashCode() {
+  public int hashCode() {
     return Objects.hash(id);
   }
 
   @Override
-  public final String toString() {
+  public String toString() {
     return "Task{" +
       "id=" + id +
       ", description='" + description + '\'' +
