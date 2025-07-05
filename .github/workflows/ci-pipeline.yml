@@ -53,22 +53,22 @@ jobs:
         echo "Warning: PMD failed but continuing build"
       continue-on-error: false
 
+    # Verificar que el directorio output existe
+    - name: Create output directory
+      run: |
+          mkdir -p output
+
     - name: Generate static HTML with Java
       run: mvn exec:java -Dexec.mainClass="com.ejemplo.ReportesMain"
 
-    # Verificar que el directorio output existe
-    - name: Check output directory
-      run: |
-        if [ ! -d "output" ]; then
-          echo "Warning: output directory does not exist, creating it"
-          mkdir -p output
-          echo "<html><body><h1>Build completed successfully</h1></body></html>" > output/index.html
-        fi
-
-    - name: Copy quality reports to output
+    - name: Copy quality reports to output (with CSS & images)
       run: |
         mkdir -p output/jacoco
-        cp -r target/site/* output/
+        cp -r target/site/jacoco/* output/jacoco/
+        cp target/site/checkstyle.html output/
+        cp target/site/pmd.html output/
+        cp -r target/site/css output/
+        cp -r target/site/images output/
 
     - name: Upload JaCoCo Coverage Report
       uses: actions/upload-artifact@v4
