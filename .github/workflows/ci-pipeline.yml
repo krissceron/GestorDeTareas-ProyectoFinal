@@ -12,27 +12,24 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: 'maven'
 
       - name: Build with Maven and Run Tests
-        # Esto compila, ejecuta los tests de JUnit y genera el reporte de cobertura de JaCoCo
         run: mvn -B clean install
 
       - name: Run Checkstyle Analysis
-        # Falla el build si hay errores de estilo
         run: mvn checkstyle:check
 
       - name: Run PMD Analysis
-        # Falla el build si hay violaciones de alta prioridad
         run: mvn pmd:check
 
-      # Opcional: Subir reportes como artefactos para revisión manual
       - name: Upload JaCoCo Report
         uses: actions/upload-artifact@v3
         with:
