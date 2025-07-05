@@ -1,7 +1,5 @@
 package com.ejemplo;
 
-import java.io.*;
-
 public final class Main {
   private Main() {
     // Ocultar constructor

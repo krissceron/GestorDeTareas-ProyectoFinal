@@ -6,67 +6,67 @@ import java.util.Objects;
  * Representa una tarea con un id, descripción y estado de completado.
  */
 public final class Task {
-  private final long id;
+  private long id;
   private String description;
   private boolean completed;
 
-  public Task(final long id, final String description, final boolean completed) {
+  public Task(long id, String description, boolean completed) {
     this.id = id;
     this.description = description;
     this.completed = completed;
   }
 
-  public Task(final long id, final String description) {
+  public Task(long id, String description) {
     this(id, description, false);
   }
 
-  public final long getId() {
+  public long getId() {
     return id;
   }
 
-  public final String getDescription() {
+  public String getDescription() {
     return description;
   }
 
-  public final boolean isCompleted() {
+  public boolean isCompleted() {
     return completed;
   }
 
-  public final void setDescription(final String description) {
+  public void setDescription(String description) {
     this.description = description;
   }
 
-  public final void setCompleted(final boolean completed) {
+  public void setCompleted(boolean completed) {
     this.completed = completed;
   }
 
-  public final void markAsCompleted() {
+  public void markAsCompleted() {
     this.completed = true;
   }
 
-  public final void markAsIncomplete() {
+  public void markAsIncomplete() {
     this.completed = false;
   }
 
   @Override
-  public final boolean equals(final Object obj) {
+  public boolean equals(Object obj) {
     if (this == obj) {
       return true;
     }
     if (obj == null || getClass() != obj.getClass()) {
       return false;
     }
-    final Task task = (Task) obj;
+    Task task = (Task) obj;
       return id == task.id;
   }
 
   @Override
-  public final int hashCode() {
+  public int hashCode() {
     return Objects.hash(id);
   }
 
   @Override
-  public final String toString() {
+  public String toString() {
     return "Task{" +
       "id=" + id +
       ", description='" + description + '\'' +
