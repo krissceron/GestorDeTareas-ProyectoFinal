@@ -1,3 +1,4 @@
-com/proyecto/calidad/Task.class
 Main.class
+Task.class
+TaskService.class
 TaskManager.class
