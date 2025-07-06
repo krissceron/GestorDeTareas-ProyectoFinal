@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+/**
+ * Aplicación de consola para gestionar tareas.
+ */
 public class ConsoleApp {
     private final TaskService taskService = new TaskService();
     private final Scanner scanner = new Scanner(System.in);
