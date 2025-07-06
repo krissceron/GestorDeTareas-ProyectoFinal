@@ -3,9 +3,15 @@ package com.ejemplo;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Main para generar reportes
+ */
 public final class ReportesMain {
+  /**
+   * Constructor privado para prevenir instanciación de clase utilitaria.
+   */
   private ReportesMain() {
-    // Ocultar constructor
+      // Ocultar constructor
   }
 
   public static void main(final String[] args) {

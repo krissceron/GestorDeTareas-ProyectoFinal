@@ -1,6 +1,12 @@
 package com.ejemplo;
 
+/**
+ * Main para ejecucion del sistema
+ */
 public final class Main {
+  /**
+  * Constructor privado para prevenir instanciación de clase utilitaria.
+  */
   private Main() {
     // Ocultar constructor
   }

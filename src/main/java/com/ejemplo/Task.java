@@ -9,7 +9,13 @@ public final class Task {
   private long id;
   private String description;
   private boolean completed;
-
+  /**
+   * Constructor para crear una nueva tarea.
+   * 
+   * @param id el identificador único de la tarea
+   * @param description la descripción de la tarea
+   * @param completed el estado de completado de la tarea (true si está completada, false si no)
+   */
   public Task(long id, String description, boolean completed) {
     this.id = id;
     this.description = description;
@@ -57,7 +63,7 @@ public final class Task {
       return false;
     }
     Task task = (Task) obj;
-      return id == task.id;
+    return id == task.id;
   }
 
   @Override
@@ -67,10 +73,10 @@ public final class Task {
 
   @Override
   public String toString() {
-    return "Task{" +
-      "id=" + id +
-      ", description='" + description + '\'' +
-      ", completed=" + completed +
-      '}';
+    return "Task{"
+      + "id=" + id
+      + ", description='" + description + '\''
+      + ", completed=" + completed
+      + '}';
   }
 }

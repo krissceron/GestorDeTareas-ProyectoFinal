@@ -10,54 +10,55 @@ import java.util.Scanner;
 public final class ConsoleApp {
   private TaskService taskService = new TaskService();
   private Scanner scanner = new Scanner(System.in);
-    
+  /**
+   * Se presenta menu de opciones del sistema
+   */  
   public void run() {
     System.out.println("=== TASK MANAGER ===");
     System.out.println("¡Bienvenido al gestor de tareas!");
+    boolean running = true;
+    while (running) {
+      showMenu();
+      int option = getMenuOption();
         
-      boolean running = true;
-        while (running) {
-          showMenu();
-          int option = getMenuOption();
-            
-          switch (option) {
-            case 1:
-              createTask();
-              break;
-            case 2:
-              listAllTasks();
-              break;
-            case 3:
-              findTask();
-              break;
-            case 4:
-              markTaskAsCompleted();
-              break;
-            case 5:
-              markTaskAsIncomplete();
-              break;
-            case 6:
-              deleteTask();
-              break;
-            case 7:
-              showCompletedTasks();
-              break;
-            case 8:
-              showPendingTasks();
-              break;
-            case 0:
-              running = false;
-              System.out.println("¡Hasta luego!");
-              break;
-            default:
-              System.out.println("Opción inválida. Por favor intenta de nuevo.");
-          }
-          if (running) {
-            System.out.println("\nPresiona Enter para continuar...");
-            scanner.nextLine();
-          }
-        }
-        scanner.close();
+      switch (option) {
+        case 1:
+          createTask();
+          break;
+        case 2:
+          listAllTasks();
+          break;
+        case 3:
+          findTask();
+          break;
+        case 4:
+          markTaskAsCompleted();
+          break;
+        case 5:
+          markTaskAsIncomplete();
+          break;
+        case 6:
+          deleteTask();
+          break;
+        case 7:
+          showCompletedTasks();
+          break;
+        case 8:
+          showPendingTasks();
+          break;
+        case 0:
+          running = false;
+          System.out.println("¡Hasta luego!");
+          break;
+        default:
+          System.out.println("Opción inválida. Por favor intenta de nuevo.");
+      }
+      if (running) {
+        System.out.println("\nPresiona Enter para continuar...");
+        scanner.nextLine();
+      }
+    }
+    scanner.close();
   }
     
   private void showMenu() {
@@ -81,9 +82,10 @@ public final class ConsoleApp {
     try {
       int option = Integer.parseInt(scanner.nextLine().trim());
       return option;
-    } catch (NumberFormatException e) {
-        return -1; // Opción inválida
-      }
+    }
+    catch (NumberFormatException e) {
+      return -1; // Opción inválida
+    }
   }
     
   private void createTask() {
@@ -97,9 +99,10 @@ public final class ConsoleApp {
       System.out.println("  ID: " + newTask.getId());
       System.out.println("  Descripción: " + newTask.getDescription());
       System.out.println("  Estado: " + (newTask.isCompleted() ? "Completada" : "Pendiente"));
-    } catch (IllegalArgumentException e) {
-        System.out.println("  Error: " + e.getMessage());
-      }
+    }
+    catch (IllegalArgumentException e) {
+      System.out.println("  Error: " + e.getMessage());
+    }
   }
     
   private void listAllTasks() {
@@ -129,8 +132,9 @@ public final class ConsoleApp {
     if (taskOpt.isPresent()) {
       System.out.println("  Tarea encontrada:");
       printTask(taskOpt.get());
-    } else {
-        System.out.println("  No se encontró una tarea con ID: " + id);
+    }
+    else {
+      System.out.println("  No se encontró una tarea con ID: " + id);
     }
   }
     
@@ -146,13 +150,15 @@ public final class ConsoleApp {
       Task task = taskOpt.get();
       if (task.isCompleted()) {
         System.out.println("  La tarea ya está completada.");
-      } else {
-          task.markAsCompleted();
-          System.out.println("  Tarea marcada como completada:");
-          printTask(task);
-        }
-    } else {
-        System.out.println("  No se encontró una tarea con ID: " + id);
+      }
+      else {
+        task.markAsCompleted();
+        System.out.println("  Tarea marcada como completada:");
+        printTask(task);
+      }
+    }
+    else {
+      System.out.println("  No se encontró una tarea con ID: " + id);
     }
   }
     
@@ -168,13 +174,15 @@ public final class ConsoleApp {
       Task task = taskOpt.get();
       if (!task.isCompleted()) {
         System.out.println("  La tarea ya está pendiente.");
-      } else {
-          task.markAsIncomplete();
-          System.out.println("  Tarea marcada como pendiente:");
-          printTask(task);
-        }
-    } else {
-        System.out.println("  No se encontró una tarea con ID: " + id);
+      }
+      else {
+        task.markAsIncomplete();
+        System.out.println("  Tarea marcada como pendiente:");
+        printTask(task);
+      }
+    }
+    else {
+      System.out.println("  No se encontró una tarea con ID: " + id);
     }
   }
     
@@ -198,14 +206,17 @@ public final class ConsoleApp {
         boolean deleted = taskService.deleteTask(id);
         if (deleted) {
           System.out.println("  Tarea eliminada exitosamente.");
-        } else {
-            System.out.println("  Error al eliminar la tarea.");
         }
-      } else {
-          System.out.println("Operación cancelada.");
+        else {
+          System.out.println("  Error al eliminar la tarea.");
         }
-    } else {
-        System.out.println("  No se encontró una tarea con ID: " + id);
+      }
+      else {
+        System.out.println("Operación cancelada.");
+      }
+    }
+    else {
+      System.out.println("  No se encontró una tarea con ID: " + id);
     }
   }
     
@@ -251,9 +262,10 @@ public final class ConsoleApp {
     System.out.print("Ingresa el ID de la tarea: ");
     try {
       return Long.parseLong(scanner.nextLine().trim());
-    } catch (NumberFormatException e) {
-        System.out.println("  ID inválido. Debe ser un número.");
-        return -1;
+    }
+    catch (NumberFormatException e) {
+      System.out.println("  ID inválido. Debe ser un número.");
+      return -1;
     }
   }
     
