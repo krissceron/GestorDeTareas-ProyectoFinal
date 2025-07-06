@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Main para generar reportes
+ * Main para generar reportes.
  */
 public final class ReportesMain {
   /**
@@ -14,6 +14,11 @@ public final class ReportesMain {
       // Ocultar constructor
   }
 
+  /**
+   * Punto de entrada principal que genera un archivo HTML con enlaces a reportes.
+   * 
+   * @param args argumentos de línea de comandos
+   */
   public static void main(final String[] args) {
     try (PrintWriter w = new PrintWriter("output/index.html", "UTF-8")) {
       w.println("<h1>Hello from Java CI/CD!</h1>");

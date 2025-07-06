@@ -1,7 +1,7 @@
 package com.ejemplo;
 
 /**
- * Main para ejecucion del sistema
+ * Main para ejecucion del sistema.
  */
 public final class Main {
   /**

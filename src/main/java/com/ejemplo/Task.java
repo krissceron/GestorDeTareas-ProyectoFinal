@@ -9,6 +9,7 @@ public final class Task {
   private long id;
   private String description;
   private boolean completed;
+  
   /**
    * Constructor para crear una nueva tarea.
    * 
