@@ -141,6 +141,36 @@ class ConsoleAppTest {
         assertTrue(output.contains("TAREAS COMPLETADAS"));
         assertTrue(output.contains("Completar"));
     }
+
+    @Test
+    @DisplayName("Simula marcar una tarea como pendiente")
+    void simulateMarkTaskAsIncomplete() {
+        String simulatedInput = String.join(System.lineSeparator(),
+                "1",                 // Crear tarea
+                "Pendiente luego",   // Descripción
+                "",                  // Enter
+                "4",                 // Marcar como completada
+                "1",                 // ID
+                "",                  // Enter
+                "5",                 // Marcar como pendiente
+                "1",                 // ID
+                "",                  // Enter
+                "8",                 // Ver tareas pendientes
+                "",                  // Enter
+                "0"                  // Salir
+        );
+    
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes(StandardCharsets.UTF_8)));
+    
+        ConsoleApp app = new ConsoleApp();
+        app.run();
+    
+        String output = testOut.toString(StandardCharsets.UTF_8);
+    
+        assertTrue(output.contains("Tarea marcada como pendiente"));
+        assertTrue(output.contains("Pendiente luego"));
+        assertTrue(output.contains("TAREAS PENDIENTES"));
+    }
     
     @Test
     @DisplayName("Simula mostrar tareas pendientes")
