@@ -92,4 +92,151 @@ class ConsoleAppTest {
 
         assertTrue(output.contains("No hay tareas registradas"));
     }
+
+    @Test
+    @DisplayName("Simula eliminar una tarea existente")
+    void simulateDeleteTask() {
+        String simulatedInput = String.join(System.lineSeparator(),
+                "1",                    // Crear tarea
+                "Eliminar esta",       // Descripción
+                "",                    // Enter
+                "6",                   // Eliminar
+                "1",                   // ID
+                "s",                   // Confirmar eliminación
+                "",                    // Enter
+                "0"                    // Salir
+        );
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes(StandardCharsets.UTF_8)));
+    
+        ConsoleApp app = new ConsoleApp();
+        app.run();
+    
+        String output = testOut.toString(StandardCharsets.UTF_8);
+    
+        assertTrue(output.contains("Tarea eliminada exitosamente"));
+        assertFalse(output.contains("Error al eliminar la tarea"));
+    }
+    
+    @Test
+    @DisplayName("Simula marcar una tarea como completada")
+    void simulateMarkTaskAsCompleted() {
+        String simulatedInput = String.join(System.lineSeparator(),
+                "1",                 // Crear tarea
+                "Completar",         // Descripción
+                "",                  // Enter
+                "4",                 // Marcar como completada
+                "1",                 // ID
+                "",                  // Enter
+                "7",                 // Mostrar completadas
+                "",                  // Enter
+                "0"                  // Salir
+        );
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes(StandardCharsets.UTF_8)));
+    
+        ConsoleApp app = new ConsoleApp();
+        app.run();
+    
+        String output = testOut.toString(StandardCharsets.UTF_8);
+        assertTrue(output.contains("Tarea marcada como completada"));
+        assertTrue(output.contains("TAREAS COMPLETADAS"));
+        assertTrue(output.contains("Completar"));
+    }
+
+    @Test
+    @DisplayName("Simula marcar una tarea como pendiente")
+    void simulateMarkTaskAsIncomplete() {
+        String simulatedInput = String.join(System.lineSeparator(),
+                "1",                 // Crear tarea
+                "Pendiente luego",   // Descripción
+                "",                  // Enter
+                "4",                 // Marcar como completada
+                "1",                 // ID
+                "",                  // Enter
+                "5",                 // Marcar como pendiente
+                "1",                 // ID
+                "",                  // Enter
+                "8",                 // Ver tareas pendientes
+                "",                  // Enter
+                "0"                  // Salir
+        );
+    
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes(StandardCharsets.UTF_8)));
+    
+        ConsoleApp app = new ConsoleApp();
+        app.run();
+    
+        String output = testOut.toString(StandardCharsets.UTF_8);
+    
+        assertTrue(output.contains("Tarea marcada como pendiente"));
+        assertTrue(output.contains("Pendiente luego"));
+        assertTrue(output.contains("TAREAS PENDIENTES"));
+    }
+    
+    @Test
+    @DisplayName("Simula mostrar tareas pendientes")
+    void simulateShowPendingTasks() {
+        String simulatedInput = String.join(System.lineSeparator(),
+                "1",             // Crear tarea
+                "Pendiente",     // Descripción
+                "",              // Enter
+                "8",             // Ver pendientes
+                "",              // Enter
+                "0"              // Salir
+        );
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes(StandardCharsets.UTF_8)));
+    
+        ConsoleApp app = new ConsoleApp();
+        app.run();
+    
+        String output = testOut.toString(StandardCharsets.UTF_8);
+        assertTrue(output.contains("TAREAS PENDIENTES"));
+        assertTrue(output.contains("Pendiente"));
+    }
+    
+    @Test
+    @DisplayName("Simula buscar una tarea existente")
+    void simulateFindTaskById() {
+        String simulatedInput = String.join(System.lineSeparator(),
+                "1",         // Crear tarea
+                "Buscarme",  // Descripción
+                "",          // Enter
+                "3",         // Buscar
+                "1",         // ID
+                "",          // Enter
+                "0"          // Salir
+        );
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes(StandardCharsets.UTF_8)));
+    
+        ConsoleApp app = new ConsoleApp();
+        app.run();
+    
+        String output = testOut.toString(StandardCharsets.UTF_8);
+        assertTrue(output.contains("Tarea encontrada"));
+        assertTrue(output.contains("Buscarme"));
+    }
+ 
+    @Test
+    @DisplayName("Simula listar todas las tareas")
+    void simulateListAllTasks() {
+    String simulatedInput = String.join(System.lineSeparator(),
+            "1",             // Crear tarea 1
+            "Primera",       // Descripción
+            "",              // Enter
+            "1",             // Crear tarea 2
+            "Segunda",       // Descripción
+            "",              // Enter
+            "2",             // Listar todas
+            "",              // Enter
+            "0"              // Salir
+    );
+    System.setIn(new ByteArrayInputStream(simulatedInput.getBytes(StandardCharsets.UTF_8)));
+ 
+    ConsoleApp app = new ConsoleApp();
+    app.run();
+ 
+    String output = testOut.toString(StandardCharsets.UTF_8);
+    assertTrue(output.contains("Primera"));
+    assertTrue(output.contains("Segunda"));
+    assertTrue(output.contains("Total de tareas: 2"));
+    }
 }
