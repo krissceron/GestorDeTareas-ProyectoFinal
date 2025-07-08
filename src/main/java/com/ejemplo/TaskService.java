@@ -16,7 +16,7 @@ public final class TaskService {
 
   /**
    * Crea una nueva tarea con la descripción especificada.
-   * 
+   *
    * @param description la descripción de la tarea, no puede ser null ni estar en blanco
    * @return la nueva tarea creada con un ID único generado automáticamente
    * @throws IllegalArgumentException si la descripción es null o está en blanco

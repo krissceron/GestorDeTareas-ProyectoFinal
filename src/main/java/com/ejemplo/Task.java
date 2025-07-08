@@ -12,7 +12,7 @@ public final class Task {
   
   /**
    * Constructor para crear una nueva tarea.
-   * 
+   *
    * @param id el identificador único de la tarea
    * @param description la descripción de la tarea
    * @param completed el estado de completado de la tarea (true si está completada, false si no)

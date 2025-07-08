@@ -16,7 +16,7 @@ public final class ReportesMain {
 
   /**
    * Punto de entrada principal que genera un archivo HTML con enlaces a reportes.
-   * 
+   *
    * @param args argumentos de línea de comandos
    */
   public static void main(final String[] args) {
